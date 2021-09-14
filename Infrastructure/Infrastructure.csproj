@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210314164646_add-extra-configs.cs" />
+    <Compile Remove="Migrations\20210314164646_add-extra-configs.Designer.cs" />
+    <Compile Remove="Migrations\20210315204409_init2.cs" />
+    <Compile Remove="Migrations\20210315204409_init2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
   </ItemGroup>

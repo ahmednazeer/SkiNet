@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core.Entities;
+
+namespace Core.Interfaces
+{
+    public interface IProductRepository
+    {
+        Task<Product> GetProductByIdAsync(int productId);
+        Task<IReadOnlyList<Product>> GetProductsAsync();
+        Task<IReadOnlyList<ProductType>> GetProductsTypesAsync();
+        Task<IReadOnlyList<ProductBrand>> GetProductsBrandsAsync();
+
+    }
+}

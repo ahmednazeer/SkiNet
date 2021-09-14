@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Interfaces;
+using Core.Specifications;
+using Infrastructure;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +35,14 @@ namespace SKINET
         {
             services.AddControllers();
             services.AddDbContext<StoreContext>(option => 
-                option.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+                option.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"), builder =>
+                {
+                    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+                }));
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped((typeof(IGenericRepository<>)), (typeof(GenericRepository<>)));
+            //services.AddScoped(typeof(ISpecification<>), typeof(BaseSpecification<>));
 
         }
 
